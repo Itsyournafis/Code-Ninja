@@ -1,0 +1,653 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Code Ninja — Compiler Studio</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOP NAVIGATION
+     ===================================================== -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        <div class="logo-icon neon">
+            🥷
+        </div>
+
+        <div>
+
+            <div class="logo-text">
+                CODE NINJA
+            </div>
+
+            <div class="logo-subtitle">
+                COMPILER STUDIO
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        SYSTEM READY
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+     ===================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         HERO
+         ================================================= -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+
+            ⚡ COMPILER DESIGN PROJECT
+
+        </div>
+
+
+        <h1>
+            C Code → Multiple Targets
+        </h1>
+
+
+        <p>
+
+            Analyze C source code using real compiler design
+            techniques and generate target code for Python,
+            Java, C++, and Assembly.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         COMPILER PIPELINE
+         ================================================= -->
+
+    <section class="pipeline">
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                01
+            </div>
+
+            <div class="pipeline-name">
+                Lexer
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                02
+            </div>
+
+            <div class="pipeline-name">
+                Parser
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                03
+            </div>
+
+            <div class="pipeline-name">
+                AST
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                04
+            </div>
+
+            <div class="pipeline-name">
+                Semantic
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                05
+            </div>
+
+            <div class="pipeline-name">
+                IR / TAC
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+
+        <div class="pipeline-step">
+
+            <div class="pipeline-number">
+                06
+            </div>
+
+            <div class="pipeline-name">
+                Generator
+            </div>
+
+            <div class="pipeline-status">
+                READY
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MAIN WORKSPACE
+         ================================================= -->
+
+    <section class="workspace">
+
+
+        <!-- =================================================
+             LEFT — C SOURCE
+             ================================================= -->
+
+        <div class="panel">
+
+
+            <div class="panel-header">
+
+
+                <div class="panel-title">
+
+                    <div class="panel-title-icon">
+                        ◈
+                    </div>
+
+                    C SOURCE CODE
+
+                </div>
+
+
+                <div class="editor-dots">
+
+                    <span class="editor-dot dot-red"></span>
+
+                    <span class="editor-dot dot-yellow"></span>
+
+                    <span class="editor-dot dot-green"></span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Editor -->
+
+            <div class="editor-wrapper">
+
+<textarea
+    id="sourceCode"
+    class="code-editor"
+    spellcheck="false"
+>#include <stdio.h>
+
+int main() {
+
+    int a = 10;
+    int b = 20;
+
+    int sum = a + b;
+
+    printf("%d", sum);
+
+    return 0;
+}</textarea>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TARGET LANGUAGES
+                 ================================================= -->
+
+            <div class="panel-header">
+
+                <div class="panel-title">
+
+                    <div class="panel-title-icon">
+                        ⚡
+                    </div>
+
+                    TARGET LANGUAGE
+
+                </div>
+
+            </div>
+
+
+            <div class="targets">
+
+
+                <div
+                    class="target active"
+                    data-target="python"
+                    onclick="selectTarget(this, 'python')"
+                >
+
+                    <div class="target-icon">
+                        🐍
+                    </div>
+
+                    <div class="target-name">
+                        Python
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="target"
+                    data-target="java"
+                    onclick="selectTarget(this, 'java')"
+                >
+
+                    <div class="target-icon">
+                        ☕
+                    </div>
+
+                    <div class="target-name">
+                        Java
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="target"
+                    data-target="cpp"
+                    onclick="selectTarget(this, 'cpp')"
+                >
+
+                    <div class="target-icon">
+                        ⚡
+                    </div>
+
+                    <div class="target-name">
+                        C++
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="target"
+                    data-target="assembly"
+                    onclick="selectTarget(this, 'assembly')"
+                >
+
+                    <div class="target-icon">
+                        ⚙
+                    </div>
+
+                    <div class="target-name">
+                        Assembly
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Convert -->
+
+            <button
+                id="convertButton"
+                class="convert-button"
+                onclick="convertCode()"
+            >
+
+                ⚡ CONVERT CODE
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT — GENERATED CODE
+             ================================================= -->
+
+        <div class="panel">
+
+
+            <div class="panel-header">
+
+
+                <div class="panel-title">
+
+                    <div class="panel-title-icon">
+                        ◇
+                    </div>
+
+                    GENERATED CODE
+
+                </div>
+
+
+                <div id="targetLabel">
+
+                    Python
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                id="outputCode"
+                class="output"
+            >
+
+# Code Ninja output
+
+# Select a target language
+# and click Convert.
+
+Waiting for conversion...
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="actions">
+
+
+                <button
+                    class="action-btn"
+                    onclick="copyOutput()"
+                >
+
+                    📋 Copy
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="downloadOutput()"
+                >
+
+                    ↓ Download
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="shareCode()"
+                >
+
+                    ↗ Share
+
+                </button>
+
+
+                <button
+                    class="action-btn"
+                    onclick="clearOutput()"
+                >
+
+                    × Clear
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         COMPILER INSIGHTS
+         ================================================= -->
+
+    <section class="panel insights">
+
+
+        <div class="panel-header">
+
+
+            <div class="panel-title">
+
+                <div class="panel-title-icon">
+                    ◈
+                </div>
+
+                COMPILER INSIGHTS
+
+            </div>
+
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                ENGINE READY
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Tabs -->
+
+        <div class="insight-tabs">
+
+
+            <button
+                class="insight-tab active"
+                onclick="showInsight('tokens', this)"
+            >
+
+                TOKENS
+
+            </button>
+
+
+            <button
+                class="insight-tab"
+                onclick="showInsight('ast', this)"
+            >
+
+                AST
+
+            </button>
+
+
+            <button
+                class="insight-tab"
+                onclick="showInsight('symbols', this)"
+            >
+
+                SYMBOL TABLE
+
+            </button>
+
+
+            <button
+                class="insight-tab"
+                onclick="showInsight('tac', this)"
+            >
+
+                TAC / IR
+
+            </button>
+
+
+            <button
+                class="insight-tab"
+                onclick="showInsight('errors', this)"
+            >
+
+                ERRORS
+
+            </button>
+
+        </div>
+
+
+
+        <!-- Insight Content -->
+
+        <div
+            id="insightContent"
+            class="insight-content"
+        >
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Token Analysis
+                </h3>
+
+                <p>
+
+                    Lexical tokens generated by the
+                    Code Ninja compiler will appear here.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+         ================================================= -->
+
+    <footer class="footer">
+
+        🥷
+
+        <strong>
+            Code Ninja
+        </strong>
+
+        — C → Python · Java · C++ · Assembly
+
+        <br><br>
+
+        Compiler Design Project · v1.0
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+
+</body>
+
+</html>
